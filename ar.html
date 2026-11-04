@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+    <meta name="theme-color" content="#071b32" />
+    <title>Fish Lantern AR · Live Scan</title>
+    <link rel="stylesheet" href="./ar.css" />
+    <script src="./vendor/aframe-1.6.0.min.js"></script>
+    <script src="./vendor/mindar-image-aframe-1.2.5.prod.js"></script>
+    <script src="./ar-components.js"></script>
+  </head>
+  <body data-phase="contained" data-tracking="idle" data-intensity="poetic">
+    <main class="ar-shell">
+      <a-scene
+        id="arScene"
+        mindar-image="imageTargetSrc: ./targets/fish-core.mind; autoStart: false; uiLoading: no; uiScanning: no; uiError: no; filterMinCF: 0.0001; filterBeta: 0.001; warmupTolerance: 5; missTolerance: 12"
+        color-space="sRGB"
+        renderer="colorManagement: true; physicallyCorrectLights: true; antialias: true; alpha: true; precision: mediump"
+        vr-mode-ui="enabled: false"
+        device-orientation-permission-ui="enabled: false"
+        loading-screen="enabled: false"
+        embedded
+      >
+        <a-assets timeout="20000">
+          <img id="layerBacking" src="./assets/02a-body-backing-reconstructed.png" />
+          <img id="layerBody" src="./assets/02-body-core.png" />
+          <img id="layerTail" src="./assets/06-tail.png" />
+          <img id="layerDorsal" src="./assets/03-dorsal-fin.png" />
+          <img id="layerLower" src="./assets/05-lower-fin.png" />
+          <img id="layerFront" src="./assets/04-front-fin.png" />
+          <img id="layerHead" src="./assets/01-head-and-antennae.png" />
+          <img id="layerEye" src="./assets/07-eye.png" />
+          <img id="crackTexture" src="./assets/ar-cracks.svg" />
+          <img id="stigmaTexture" src="./assets/ar-stigma-labels.svg" />
+        </a-assets>
+
+        <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+        <a-entity id="fishTarget" mindar-image-target="targetIndex: 0">
+          <a-entity id="effectRoot" position="0.252 0.013 0.02">
+            <a-entity id="swimGroup" fish-lantern-motion>
+              <a-image src="#layerBacking" width="1.62" height="1.08" position="0 0 0.024" material="transparent: true; alphaTest: 0.01; shader: flat; side: double"></a-image>
+
+              <a-entity id="tailPivot" position="0.332 0.016 0.028">
+                <a-image src="#layerTail" width="1.62" height="1.08" position="-0.332 -0.016 0" material="transparent: true; alphaTest: 0.01; shader: flat; side: double"></a-image>
+              </a-entity>
+
+              <a-entity id="dorsalPivot" position="-0.073 0.049 0.031">
+                <a-image src="#layerDorsal" width="1.62" height="1.08" position="0.073 -0.049 0" material="transparent: true; alphaTest: 0.01; shader: flat; side: double"></a-image>
+              </a-entity>
+
+              <a-image src="#layerBody" width="1.62" height="1.08" position="0 0 0.036" material="transparent: true; alphaTest: 0.01; shader: flat; side: double"></a-image>
+
+              <a-entity id="lowerPivot" position="0.089 -0.259 0.042">
+                <a-image src="#layerLower" width="1.62" height="1.08" position="-0.089 0.259 0" material="transparent: true; alphaTest: 0.01; shader: flat; side: double"></a-image>
+              </a-entity>
+
+              <a-entity id="frontPivot" position="-0.300 -0.200 0.046">
+                <a-image src="#layerFront" width="1.62" height="1.08" position="0.300 0.200 0" material="transparent: true; alphaTest: 0.01; shader: flat; side: double"></a-image>
+              </a-entity>
+
+              <a-entity id="headPivot" position="-0.365 -0.070 0.050">
+                <a-image src="#layerHead" width="1.62" height="1.08" position="0.365 0.070 0" material="transparent: true; alphaTest: 0.01; shader: flat; side: double"></a-image>
+              </a-entity>
+
+              <a-image id="eyeLayer" src="#layerEye" width="1.62" height="1.08" position="0 0 0.056" material="transparent: true; alphaTest: 0.01; shader: flat; side: double"></a-image>
+            </a-entity>
+
+            <a-entity id="fogGroup">
+              <a-circle radius="0.22" position="-0.43 0.16 0.073" scale="1.8 0.8 1" material="color: #4f9aaa; transparent: true; opacity: 0.13; shader: flat; side: double" animation="property: position; from: -0.43 0.16 0.073; to: -0.30 0.21 0.073; dur: 4200; dir: alternate; loop: true; easing: easeInOutSine"></a-circle>
+              <a-circle radius="0.25" position="0.06 0.22 0.074" scale="1.9 0.72 1" material="color: #2e7181; transparent: true; opacity: 0.16; shader: flat; side: double" animation="property: position; from: 0.06 0.22 0.074; to: 0.18 0.15 0.074; dur: 5100; dir: alternate; loop: true; easing: easeInOutSine"></a-circle>
+              <a-circle radius="0.24" position="0.45 -0.08 0.075" scale="1.7 0.7 1" material="color: #5d9eaa; transparent: true; opacity: 0.13; shader: flat; side: double" animation="property: position; from: 0.45 -0.08 0.075; to: 0.31 -0.01 0.075; dur: 4600; dir: alternate; loop: true; easing: easeInOutSine"></a-circle>
+              <a-circle radius="0.20" position="-0.12 -0.27 0.076" scale="2.1 0.65 1" material="color: #2e7181; transparent: true; opacity: 0.14; shader: flat; side: double" animation="property: position; from: -0.12 -0.27 0.076; to: 0.03 -0.21 0.076; dur: 3900; dir: alternate; loop: true; easing: easeInOutSine"></a-circle>
+            </a-entity>
+
+            <a-entity id="barrierGroup">
+              <a-circle radius="0.64" position="0 0 0.087" scale="1.22 0.76 1" material="color: #79c0c9; transparent: true; opacity: 0.075; shader: flat; side: double"></a-circle>
+              <a-ring radius-inner="0.632" radius-outer="0.64" position="0 0 0.089" scale="1.22 0.76 1" material="color: #a7dce1; transparent: true; opacity: 0.55; shader: flat; side: double"></a-ring>
+              <a-image src="#stigmaTexture" width="1.56" height="1.04" position="0 0 0.096" material="transparent: true; alphaTest: 0.01; shader: flat; side: double"></a-image>
+            </a-entity>
+
+            <a-image id="crackLayer" src="#crackTexture" width="1.54" height="1.03" position="0 0 0.106" visible="false" material="transparent: true; alphaTest: 0.01; shader: flat; side: double"></a-image>
+          </a-entity>
+        </a-entity>
+      </a-scene>
+
+      <div class="ar-vignette" aria-hidden="true"></div>
+
+      <header class="ar-topbar">
+        <div class="ar-brand">
+          <span></span>
+          <div>
+            <p>FISH LANTERN · LIVE AR</p>
+            <h1>Beyond the Label</h1>
+          </div>
+        </div>
+        <div class="tracking-status" id="trackingStatus"><i></i><span>Ready to scan</span></div>
+      </header>
+
+      <section class="scan-guide" id="scanGuide" aria-live="polite">
+        <div class="scan-frame" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+          <div class="scan-line"></div>
+        </div>
+        <p id="scanInstruction">Align the fish head and central body inside the frame.</p>
+      </section>
+
+      <section class="start-card" id="startCard">
+        <p class="kicker">IMAGE-TRACKED EXPERIENCE</p>
+        <h2>Point your camera at the physical fish lantern.</h2>
+        <p>The effect appears only after the fish pattern is recognized. Use the horizontal side shown in the reference.</p>
+        <div class="target-preview">
+          <img src="./targets/fish-core-reference.jpg" alt="The head and central body area to scan" />
+          <span>SCAN THIS AREA</span>
+        </div>
+        <button id="startScan" type="button">Begin Live Scan</button>
+        <a href="./preview.html">Open effect preview instead</a>
+      </section>
+
+      <section class="interaction-copy" id="interactionCopy" aria-live="polite">
+        <p id="chapter">01 · DEFINED</p>
+        <h2 id="message">Labels make distance visible.</h2>
+      </section>
+
+      <section class="ar-final" id="finalMessage" aria-live="polite">
+        <p>A DIAGNOSIS IS NOT A DEFINITION.</p>
+        <h2>See the whole person.</h2>
+        <span>BEYOND STIGMA · TOWARD UNDERSTANDING</span>
+      </section>
+
+      <footer class="ar-controls">
+        <button id="barrierAction" class="primary-control" type="button" disabled>Touch the barrier</button>
+        <button id="resetExperience" class="round-control" type="button" aria-label="Restart experience" disabled><span class="reset-symbol"></span></button>
+        <button id="openCalibration" class="round-control" type="button" aria-label="Open calibration"><span class="adjust-symbol"></span></button>
+      </footer>
+
+      <aside class="calibration" id="calibration" hidden>
+        <div class="calibration-head">
+          <div><p>TWEAKS</p><h2>AR alignment</h2></div>
+          <button id="closeCalibration" type="button" aria-label="Close alignment panel">×</button>
+        </div>
+        <label>Horizontal <output id="offsetXValue">0.252</output><input id="offsetX" type="range" min="-0.1" max="0.6" value="0.252" step="0.005" /></label>
+        <label>Vertical <output id="offsetYValue">0.013</output><input id="offsetY" type="range" min="-0.35" max="0.35" value="0.013" step="0.005" /></label>
+        <label>Scale <output id="scaleValue">1.00</output><input id="effectScale" type="range" min="0.65" max="1.35" value="1" step="0.01" /></label>
+        <div class="intensity-row" role="group" aria-label="Effect intensity">
+          <button type="button" data-intensity="restrained">Restrained</button>
+          <button type="button" data-intensity="poetic" class="active">Poetic</button>
+          <button type="button" data-intensity="intense">Intense</button>
+        </div>
+        <button id="resetCalibration" class="reset-calibration" type="button">Reset alignment</button>
+      </aside>
+
+      <section class="error-card" id="errorCard" hidden>
+        <p>CAMERA UNAVAILABLE</p>
+        <h2>Open this page over HTTPS and allow camera access.</h2>
+        <button id="retryCamera" type="button">Retry Camera</button>
+      </section>
+    </main>
+    <script src="./ar.js"></script>
+  </body>
+</html>

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#071b32" />
+    <title>Fish Lantern AR · Beyond the Label</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-phase="contained" data-intensity="poetic">
+    <main class="experience" aria-label="Interactive Fish Lantern AR experience">
+      <video id="camera" class="camera" autoplay muted playsinline aria-hidden="true"></video>
+      <div class="camera-fallback" aria-hidden="true"></div>
+      <div class="color-wash" aria-hidden="true"></div>
+      <div class="grain" aria-hidden="true"></div>
+
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <div>
+            <p class="eyebrow">FISH LANTERN · AR STUDY 01</p>
+            <h1>Beyond the Label</h1>
+          </div>
+        </div>
+        <div class="status" id="status"><span></span>Interactive Preview</div>
+      </header>
+
+      <section class="scene" id="scene" aria-label="Touch the blue barrier to release the fish lantern">
+        <div class="halo" aria-hidden="true"></div>
+        <div class="fish-wrap" id="fishWrap" aria-hidden="true">
+          <img class="fish-layer backing" src="./assets/02a-body-backing-reconstructed.png" alt="" />
+          <img class="fish-layer tail" src="./assets/06-tail.png" alt="" />
+          <img class="fish-layer dorsal" src="./assets/03-dorsal-fin.png" alt="" />
+          <img class="fish-layer body-core" src="./assets/02-body-core.png" alt="" />
+          <img class="fish-layer lower-fin" src="./assets/05-lower-fin.png" alt="" />
+          <img class="fish-layer front-fin" src="./assets/04-front-fin.png" alt="" />
+          <img class="fish-layer head" src="./assets/01-head-and-antennae.png" alt="" />
+          <img class="fish-layer eye" src="./assets/07-eye.png" alt="" />
+        </div>
+
+        <div class="fog fog-a" aria-hidden="true"></div>
+        <div class="fog fog-b" aria-hidden="true"></div>
+        <div class="fog fog-c" aria-hidden="true"></div>
+
+        <button class="barrier" id="barrier" type="button" aria-label="Touch the barrier">
+          <span class="barrier-glass"></span>
+          <span class="stigma word-fear">Fear <small>THE UNKNOWN</small></span>
+          <span class="stigma word-silence">Silence <small>UNSPOKEN</small></span>
+          <span class="stigma word-distance">Distance <small>BETWEEN US</small></span>
+          <span class="stigma word-misunderstanding">Misunderstanding <small>ASSUMPTION</small></span>
+          <svg class="cracks" viewBox="0 0 1000 720" preserveAspectRatio="none" aria-hidden="true">
+            <g class="crack-lines">
+              <path d="M505 346 L433 281 L374 263 L322 202" />
+              <path d="M433 281 L410 199 L355 135" />
+              <path d="M505 346 L571 289 L642 263 L701 188" />
+              <path d="M571 289 L594 211 L651 145" />
+              <path d="M505 346 L472 423 L398 474 L348 565" />
+              <path d="M472 423 L492 515 L463 621" />
+              <path d="M505 346 L566 416 L641 453 L701 550" />
+              <path d="M566 416 L555 518 L592 622" />
+              <path d="M505 346 L504 251 L529 192" />
+              <circle cx="505" cy="346" r="13" />
+            </g>
+          </svg>
+          <span class="tap-ripple" aria-hidden="true"></span>
+        </button>
+
+        <div class="particles" id="particles" aria-hidden="true"></div>
+      </section>
+
+      <section class="narrative" aria-live="polite">
+        <p class="chapter" id="chapter">01 · DEFINED</p>
+        <h2 id="message">Labels make distance visible.</h2>
+        <p class="instruction" id="instruction">Touch the barrier. Listen for the fracture.</p>
+      </section>
+
+      <section class="final-message" aria-live="polite">
+        <p>A diagnosis is not a definition.</p>
+        <h2>See the whole person.</h2>
+        <span>BEYOND STIGMA · TOWARD UNDERSTANDING</span>
+      </section>
+
+      <footer class="controls">
+        <button id="cameraButton" class="control-button camera-button" type="button">
+          <span class="camera-icon" aria-hidden="true"></span>
+          <span>Enable Camera</span>
+        </button>
+        <button id="resetButton" class="control-button reset-button" type="button" disabled>
+          <span class="reset-icon" aria-hidden="true"></span>
+          <span>Restart</span>
+        </button>
+        <button id="tweaksButton" class="control-button tweaks-button" type="button" aria-expanded="false">
+          <span class="sliders-icon" aria-hidden="true"></span>
+          <span>Effects</span>
+        </button>
+      </footer>
+
+      <aside class="tweaks-panel" id="tweaksPanel" aria-label="Effect intensity" hidden>
+        <div class="panel-heading">
+          <div>
+            <p>TWEAKS</p>
+            <h3>Effect intensity</h3>
+          </div>
+          <button id="closeTweaks" type="button" aria-label="Close effects panel">×</button>
+        </div>
+        <div class="preset-grid" role="group" aria-label="Choose effect intensity">
+          <button type="button" data-preset="restrained">Restrained</button>
+          <button type="button" data-preset="poetic" class="active">Poetic</button>
+          <button type="button" data-preset="intense">Intense</button>
+        </div>
+        <p class="panel-note">Adjust the fog, fracture, and swimming motion.</p>
+      </aside>
+
+      <div class="permission-card" id="permissionCard">
+        <p class="permission-kicker">CAMERA LAYER</p>
+        <h2>Bring the fish lantern into your space.</h2>
+        <p>Allow camera access to place the experience over your surroundings. This edition is an interactive preview; image tracking will be added in the next stage.</p>
+        <div class="permission-actions">
+          <button id="allowCamera" type="button">Allow Camera</button>
+          <button id="skipCamera" type="button">Preview Without Camera</button>
+        </div>
+      </div>
+    </main>
+    <script src="./app.js"></script>
+  </body>
+</html>

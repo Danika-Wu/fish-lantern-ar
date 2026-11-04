@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1080">
+  <g fill="none" stroke="#dff8f8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".92">
+    <path d="M804 520 690 423 595 390 518 290M690 423 648 306 560 210M804 520 920 430 1032 393 1126 275M920 430 954 310 1040 220M804 520 748 640 632 720 552 860M748 640 782 784 735 936M804 520 908 630 1026 694 1122 848M908 630 890 786 950 940M804 520 802 376 842 286"/>
+    <circle cx="804" cy="520" r="20" fill="#e8ffff" fill-opacity=".16"/>
+  </g>
+</svg>
