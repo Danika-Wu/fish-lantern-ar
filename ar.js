@@ -85,6 +85,7 @@ async function beginScan() {
     await waitForScene();
     await scene.systems["mindar-image-system"].start();
     started = true;
+    body.dataset.started = "true";
     body.dataset.tracking = "searching";
     startCard.classList.add("hidden");
     window.setTimeout(() => { startCard.hidden = true; }, 600);
@@ -132,8 +133,14 @@ function readSliders() {
 }
 
 [offsetX, offsetY, effectScale].forEach((input) => input.addEventListener("input", readSliders));
-openCalibration.addEventListener("click", () => { calibration.hidden = false; });
-closeCalibration.addEventListener("click", () => { calibration.hidden = true; });
+openCalibration.addEventListener("click", () => {
+  calibration.hidden = false;
+  body.dataset.calibrationOpen = "true";
+});
+closeCalibration.addEventListener("click", () => {
+  calibration.hidden = true;
+  body.dataset.calibrationOpen = "false";
+});
 resetCalibration.addEventListener("click", () => applyCalibration(defaults));
 
 document.querySelectorAll("[data-intensity]").forEach((button) => {
