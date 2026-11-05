@@ -69,7 +69,7 @@ function updateTracking(isTracked) {
   trackingStatus.textContent = isTracked ? "Fish recognized" : "Searching for fish";
   scanInstruction.textContent = isTracked
     ? "Target locked. The effect is anchored to the lantern."
-    : "Align the fish head and central body inside the frame.";
+    : "Fill the frame with the horizontal fish. Keep its head and patterned body visible.";
   scanGuide.classList.toggle("target-found", isTracked);
   interactionCopy.classList.toggle("visible", isTracked && phase < 2);
   barrierAction.disabled = !isTracked || phase >= 2;
